@@ -1,0 +1,14 @@
+.cache
+.idea
+.vscode
+
+# Compiled source
+*build*
+/bin
+
+# Large market data
+data/SCS.log
+data/SCH.log
+
+# OS generated files
+.DS_Store
