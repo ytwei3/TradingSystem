@@ -1,12 +1,14 @@
 #ifndef TRADING_TYPE_HPP_
 #define TRADING_TYPE_HPP_
 
+#include <cstdint>
+
 namespace trading {
 
-using Price = double;
-using Quantity = int;
-using OrderId = long long;
-using Timestamp = long long;
+using Price = std::uint32_t;
+using Quantity = std::uint32_t;
+using OrderId = std::uint64_t;
+using Timestamp = std::uint64_t;
 
 enum class TransactionSide { BUY, SELL };
 enum class TransactionCategory { NEW, CANCEL, TRADE };

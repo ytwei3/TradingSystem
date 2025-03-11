@@ -2,7 +2,27 @@
 
 namespace trading {
 
-double OrderBook::GetBidPrice(int level) const {
+template <class T>
+typename T::iterator AddOrder(T &side, Price price, Quantity quantity) {
+  auto [it, inserted] = side.try_emplace(price, PriceLevelInfo{0, {}});
+  if (inserted == false) {
+    it->second.total_quantity += quantity;
+  }
+  return it;
+}
+
+template <class T>
+typename T::iterator DeleteOrder(T &side, Price price, Quantity quantity) {
+  auto it = side.find(price);
+  if (it != side.end()) {
+    it->second.total_quantity -= quantity;
+    if (it->second.total_quantity == 0) {
+      side.erase(it);
+    }
+  }
+}
+
+auto OrderBook::GetBidPrice(int level) const -> Price {
   auto &book = bids_;
 
   if (book.size() <= level) {
@@ -13,7 +33,7 @@ double OrderBook::GetBidPrice(int level) const {
   return it->first;
 }
 
-double OrderBook::GetAskPrice(int level) const {
+auto OrderBook::GetAskPrice(int level) const -> Price {
   auto &book = asks_;
 
   if (book.size() <= level) {
@@ -24,7 +44,7 @@ double OrderBook::GetAskPrice(int level) const {
   return it->first;
 }
 
-int OrderBook::GetBidQuantity(int level) const {
+auto OrderBook::GetBidQuantity(int level) const -> Quantity {
   auto &book = bids_;
   if (book.size() <= level) {
     return 0;
@@ -34,7 +54,7 @@ int OrderBook::GetBidQuantity(int level) const {
   return it->second.total_quantity;
 }
 
-int OrderBook::GetAskQuantity(int level) const {
+auto OrderBook::GetAskQuantity(int level) const -> Quantity {
   auto &book = asks_;
   if (book.size() <= level) {
     return 0;

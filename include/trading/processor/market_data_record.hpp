@@ -8,6 +8,7 @@
 namespace trading {
 
 struct MarketDataRecord {
+public:
   Timestamp timestamp;
   OrderId order_id;
   std::string symbol;

@@ -35,7 +35,7 @@ int main() {
     assert(asks.size() == 1);
     assert(asks.begin()->second.total_quantity == 11);
     assert(asks.begin()->second.orders.size() == 2);
-    assert(asks.begin()->second.orders[0].quantity == 1);
+    assert(asks.begin()->second.orders[0].initilized_quantity == 1);
 
     // check last trade in snapshot
     auto &snapshot = processor.snapshot_cache_.at(symbol);

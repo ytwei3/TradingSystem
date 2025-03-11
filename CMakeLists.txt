@@ -13,7 +13,7 @@ message(STATUS "Started CMake for ${PROJECT_NAME} v${PROJECT_VERSION}...\n")
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 
 # set output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
@@ -24,16 +24,21 @@ add_library(Trading
   src/orderbook.cpp
   src/processor.cpp
   src/engine.cpp
+  src/logger.cpp
 )
 target_include_directories(Trading PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 add_executable(main src/main.cpp)
 
-target_link_libraries(main Trading)
+target_link_libraries(main PRIVATE Trading)
 
 # ------------------- Add tests -------------------
 # testing code
 enable_testing()
+
+add_executable(test_draft tests/draft.cpp)
+target_link_libraries(test_draft Trading)
+add_test(NAME test_draft COMMAND test_processor --verbose)
 
 add_executable(test_orderbook tests/test_orderbook.cpp)
 target_link_libraries(test_orderbook Trading)

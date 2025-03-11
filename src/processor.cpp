@@ -154,12 +154,12 @@ void OrderBookProcessor::ProcessBuyTradeRecord(const MarketDataRecord &&data) {
 
   auto &orders = traded_book.begin()->second.orders;
   for (auto it = orders.begin(); it != orders.end(); ++it) {
-    if (data_quantity >= it->quantity) {
-      data_quantity -= it->quantity;
-      traded_book.begin()->second.total_quantity -= it->quantity;
+    if (data_quantity >= it->initilized_quantity) {
+      data_quantity -= it->initilized_quantity;
+      traded_book.begin()->second.total_quantity -= it->initilized_quantity;
       it = orders.erase(it);
     } else {
-      it->quantity -= data_quantity;
+      it->initilized_quantity -= data_quantity;
       traded_book.begin()->second.total_quantity -= data_quantity;
       break;
     }
@@ -182,12 +182,12 @@ void OrderBookProcessor::ProcessSellTradeRecord(const MarketDataRecord &&data) {
 
   auto &orders = traded_book.begin()->second.orders;
   for (auto it = orders.begin(); it != orders.end(); ++it) {
-    if (data_quantity >= it->quantity) {
-      data_quantity -= it->quantity;
-      traded_book.begin()->second.total_quantity -= it->quantity;
+    if (data_quantity >= it->initilized_quantity) {
+      data_quantity -= it->initilized_quantity;
+      traded_book.begin()->second.total_quantity -= it->initilized_quantity;
       it = orders.erase(it);
     } else {
-      it->quantity -= data_quantity;
+      it->initilized_quantity -= data_quantity;
       traded_book.begin()->second.total_quantity -= data_quantity;
       break;
     }
