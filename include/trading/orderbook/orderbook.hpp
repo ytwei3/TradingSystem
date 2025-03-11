@@ -1,6 +1,7 @@
 #ifndef TRADING_ORDERBOOK_ORDERBOOK_HPP_
 #define TRADING_ORDERBOOK_ORDERBOOK_HPP_
 
+#include "trading/orderbook/order.hpp"
 #include "trading/type.hpp"
 
 #include <map>
@@ -8,21 +9,17 @@
 
 namespace trading {
 
-struct Order {
-  OrderId order_id;
-  Price price;
-  Quantity quantity;
-};
-
 struct PriceLevelInfo {
   Quantity total_quantity;
   std::vector<Order> orders;
 };
 
+using OrderPointer = std::shared_ptr<Order>;
+
 class OrderBook {
 public:
   using BidOrderBookSide = std::map<Price, PriceLevelInfo, std::greater<Price>>;
-  using AskOrderBookSide = std::map<Price, PriceLevelInfo>;
+  using AskOrderBookSide = std::map<Price, PriceLevelInfo, std::less<Price>>;
   BidOrderBookSide bids_;
   AskOrderBookSide asks_;
 
@@ -33,6 +30,11 @@ public:
 
   const BidOrderBookSide GetBidIOrderBook() const { return bids_; }
   const AskOrderBookSide GetAskIOrderBook() const { return asks_; }
+
+  auto AddOrder(const Order &order) -> void;
+  auto DeleteOrder(const Order &order) -> void;
+
+
   // template <typename T> auto &GetOrderBook();
 };
 } // namespace trading
