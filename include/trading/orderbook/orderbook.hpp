@@ -14,8 +14,6 @@ struct PriceLevelInfo {
   std::vector<Order> orders;
 };
 
-using OrderPointer = std::shared_ptr<Order>;
-
 class OrderBook {
 public:
   using BidOrderBookSide = std::map<Price, PriceLevelInfo, std::greater<Price>>;
@@ -33,7 +31,6 @@ public:
 
   auto AddOrder(const Order &order) -> void;
   auto DeleteOrder(const Order &order) -> void;
-
 
   // template <typename T> auto &GetOrderBook();
 };
