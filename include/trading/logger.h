@@ -1,5 +1,5 @@
-#ifndef LOGGER_HPP
-#define LOGGER_HPP
+#ifndef LOGGER_H
+#define LOGGER_H
 
 #include <chrono>
 #include <mutex>
@@ -57,4 +57,4 @@ private:
   std::string getLogLevelString(LogLevel level);
 };
 
-#endif // LOGGER_HPP
+#endif // LOGGER_H

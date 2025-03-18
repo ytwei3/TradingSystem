@@ -1,7 +1,7 @@
-#ifndef TRADING_ORDERBOOK_SNAPSHOT_HPP_
-#define TRADING_ORDERBOOK_SNAPSHOT_HPP_
+#ifndef TRADING_ORDERBOOK_SNAPSHOT_H
+#define TRADING_ORDERBOOK_SNAPSHOT_H
 
-#include "trading/type.hpp"
+#include "trading/type.h"
 
 #include <string>
 #include <vector>
@@ -25,4 +25,4 @@ struct Snapshot {
 };
 } // namespace trading
 
-#endif // TRADING_ORDERBOOK_SNAPSHOT_HPP_
+#endif // TRADING_ORDERBOOK_SNAPSHOT_H

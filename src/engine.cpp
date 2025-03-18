@@ -1,4 +1,4 @@
-#include "trading/execution/engine.hpp"
+#include "trading/execution/engine.h"
 
 #include <iomanip>
 #include <sstream>
@@ -46,13 +46,14 @@ std::string ExecutionEngine::queryOrderBookSnapshots(
   // check if the snapshot is within the range
   // if no, process up to the end of the range
   for (const auto &symbol : symbols) {
-    if (processor.processed_timestamp_ < end) {
+    if (processor.processed_timestamp_ < static_cast<unsigned long long>(end)) {
       processor.ProcessMarketData(symbol, end);
     }
 
     for (const auto &snap : processor.snapshot_cache_.at(symbol)) {
       // could be optimized by using binary search
-      if (snap.epoch >= start && snap.epoch <= end) {
+      if (snap.epoch >= static_cast<unsigned long long>(start) &&
+          snap.epoch <= static_cast<unsigned long long>(end)) {
         result += snap.symbol + ", " + std::to_string(snap.epoch);
 
         if (!ask_levels.empty() || !bid_levels.empty()) {
@@ -67,9 +68,9 @@ std::string ExecutionEngine::queryOrderBookSnapshots(
 
         result += " X";
 
-        for (auto i = 0; i < ask_levels.size(); ++i) {
-          result += " " + std::to_string(snap.ask_price_levels[i].quantity) +
-                    "@" + doubleToString(snap.ask_price_levels[i].price);
+        for (std::size_t i = 0; i < ask_levels.size(); ++i) {
+          " " + std::to_string(snap.ask_price_levels[i].quantity) + "@" +
+              doubleToString(snap.ask_price_levels[i].price);
         }
 
         if (output_last_trade_price) {

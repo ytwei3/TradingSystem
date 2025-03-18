@@ -1,5 +1,5 @@
-#ifndef TRADING_TYPE_HPP_
-#define TRADING_TYPE_HPP_
+#ifndef TRADING_TYPE_H
+#define TRADING_TYPE_H
 
 #include <cstdint>
 
@@ -15,4 +15,4 @@ enum class TransactionCategory { NEW, CANCEL, TRADE };
 
 } // namespace trading
 
-#endif // TRADING_TYPE_HPP_
+#endif // TRADING_TYPE_H

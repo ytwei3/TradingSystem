@@ -1,7 +1,7 @@
-#include "trading/processor/processor.hpp"
-#include "trading/orderbook/orderbook.hpp"
-#include "trading/orderbook/snapshot.hpp"
-#include "trading/type.hpp"
+#include "trading/processor/processor.h"
+#include "trading/orderbook/orderbook.h"
+#include "trading/orderbook/snapshot.h"
+#include "trading/type.h"
 
 #include <fstream>
 #include <iostream>
@@ -107,7 +107,7 @@ void OrderBookProcessor::ProcessBuyNewRecord(const MarketDataRecord &&data) {
 
   price_level.total_quantity += data.quantity;
   price_level.orders.emplace_back(
-      std::move(Order{data.order_id, data.price, data.quantity}));
+      Order{data.order_id, data.price, data.quantity});
 }
 
 void OrderBookProcessor::ProcessSellNewRecord(const MarketDataRecord &&data) {
@@ -115,7 +115,7 @@ void OrderBookProcessor::ProcessSellNewRecord(const MarketDataRecord &&data) {
 
   price_level.total_quantity += data.quantity;
   price_level.orders.emplace_back(
-      std::move(Order{data.order_id, data.price, data.quantity}));
+      Order{data.order_id, data.price, data.quantity});
 }
 
 void OrderBookProcessor::ProcessBuyCancelRecord(const MarketDataRecord &&data) {
@@ -204,12 +204,12 @@ void OrderBookProcessor::SaveSnapshot(const std::string &symbol,
 
   for (int i = 0; i < 5; ++i) {
     snapshot.ask_price_levels.emplace_back(
-        std::move(PriceQuantity{orderbook_cache_[symbol].GetAskPrice(i),
-                                orderbook_cache_[symbol].GetAskQuantity(i)}));
+        PriceQuantity{orderbook_cache_[symbol].GetAskPrice(i),
+                      orderbook_cache_[symbol].GetAskQuantity(i)});
 
     snapshot.bid_price_levels.emplace_back(
-        std::move(PriceQuantity{orderbook_cache_[symbol].GetBidPrice(i),
-                                orderbook_cache_[symbol].GetBidQuantity(i)}));
+        PriceQuantity{orderbook_cache_[symbol].GetBidPrice(i),
+                      orderbook_cache_[symbol].GetBidQuantity(i)});
   }
 
   snapshot.last_trade_price = last_trade_price;

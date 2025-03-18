@@ -1,7 +1,7 @@
-#ifndef TRADING_PROCESSOR_MARKET_DATA_RECORD_HPP_
-#define TRADING_PROCESSOR_MARKET_DATA_RECORD_HPP_
+#ifndef TRADING_PROCESSOR_MARKET_DATA_RECORD_H
+#define TRADING_PROCESSOR_MARKET_DATA_RECORD_H
 
-#include "trading/type.hpp"
+#include "trading/type.h"
 
 #include <string>
 
@@ -20,4 +20,4 @@ public:
 
 } // namespace trading
 
-#endif // TRADING_PROCESSOR_MARKET_DATA_RECORD_HPP_
+#endif // TRADING_PROCESSOR_MARKET_DATA_RECORD_H

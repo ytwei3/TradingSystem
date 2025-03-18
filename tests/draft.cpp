@@ -1,4 +1,4 @@
-#include "trading/logger.hpp"
+#include "trading/logger.h"
 
 int main() {
   Logger &logger = Logger::getInstance();

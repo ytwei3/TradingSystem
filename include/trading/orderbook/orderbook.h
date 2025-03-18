@@ -1,8 +1,8 @@
-#ifndef TRADING_ORDERBOOK_ORDERBOOK_HPP_
-#define TRADING_ORDERBOOK_ORDERBOOK_HPP_
+#ifndef TRADING_ORDERBOOK_ORDERBOOK_H
+#define TRADING_ORDERBOOK_ORDERBOOK_H
 
-#include "trading/orderbook/order.hpp"
-#include "trading/type.hpp"
+#include "trading/orderbook/order.h"
+#include "trading/type.h"
 
 #include <map>
 #include <vector>
@@ -36,4 +36,4 @@ public:
 };
 } // namespace trading
 
-#endif // TRADING_ORDERBOOK_ORDERBOOK_HPP_
+#endif // TRADING_ORDERBOOK_ORDERBOOK_H

@@ -1,9 +1,9 @@
-#ifndef TRADING_PROCESSOR_PROCESSOR_HPP_
-#define TRADING_PROCESSOR_PROCESSOR_HPP_
+#ifndef TRADING_PROCESSOR_PROCESSOR_H
+#define TRADING_PROCESSOR_PROCESSOR_H
 
-#include "trading/orderbook/orderbook.hpp"
-#include "trading/orderbook/snapshot.hpp"
-#include "trading/processor/market_data_record.hpp"
+#include "trading/orderbook/orderbook.h"
+#include "trading/orderbook/snapshot.h"
+#include "trading/processor/market_data_record.h"
 
 #include <queue>
 #include <string>
@@ -81,9 +81,9 @@ public:
   const OrderBook GetOrderBook(const std::string &symbol) const {
     return orderbook_cache_.at(symbol);
   }
-  const Timestamp GetProcessedTimestamp() const { return processed_timestamp_; }
+  Timestamp GetProcessedTimestamp() const { return processed_timestamp_; }
   // template <typename T> auto ProcessNewRecord(const MarketDataRecord &&data);
 };
 } // namespace trading
 
-#endif // TRADING_PROCESSOR_PROCESSOR_HPP_
+#endif // TRADING_PROCESSOR_PROCESSOR_H

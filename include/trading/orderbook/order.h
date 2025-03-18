@@ -1,7 +1,7 @@
-#ifndef TRADING_ORDERBOOK_ORDER_HPP_
-#define TRADING_ORDERBOOK_ORDER_HPP_
+#ifndef TRADING_ORDERBOOK_ORDER_H
+#define TRADING_ORDERBOOK_ORDER_H
 
-#include "trading/type.hpp"
+#include "trading/type.h"
 
 namespace trading {
 
@@ -27,4 +27,4 @@ public:
 };
 } // namespace trading
 
-#endif // TRADING_ORDERBOOK_ORDER_HPP_
+#endif // TRADING_ORDERBOOK_ORDER_H

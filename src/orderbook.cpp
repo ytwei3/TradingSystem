@@ -1,4 +1,4 @@
-#include "trading/orderbook/orderbook.hpp"
+#include "trading/orderbook/orderbook.h"
 
 namespace trading {
 
@@ -25,7 +25,7 @@ typename T::iterator DeleteOrder(T &side, Price price, Quantity quantity) {
 auto OrderBook::GetBidPrice(int level) const -> Price {
   auto &book = bids_;
 
-  if (book.size() <= level) {
+  if (book.size() <= static_cast<decltype(book.size())>(level)) {
     return 0;
   }
   auto it = book.begin();
@@ -36,7 +36,7 @@ auto OrderBook::GetBidPrice(int level) const -> Price {
 auto OrderBook::GetAskPrice(int level) const -> Price {
   auto &book = asks_;
 
-  if (book.size() <= level) {
+  if (book.size() <= static_cast<decltype(book.size())>(level)) {
     return 0;
   }
   auto it = book.begin();
@@ -46,7 +46,7 @@ auto OrderBook::GetAskPrice(int level) const -> Price {
 
 auto OrderBook::GetBidQuantity(int level) const -> Quantity {
   auto &book = bids_;
-  if (book.size() <= level) {
+  if (book.size() <= static_cast<decltype(book.size())>(level)) {
     return 0;
   }
   auto it = book.begin();
@@ -56,7 +56,7 @@ auto OrderBook::GetBidQuantity(int level) const -> Quantity {
 
 auto OrderBook::GetAskQuantity(int level) const -> Quantity {
   auto &book = asks_;
-  if (book.size() <= level) {
+  if (book.size() <= static_cast<decltype(book.size())>(level)) {
     return 0;
   }
   auto it = book.begin();

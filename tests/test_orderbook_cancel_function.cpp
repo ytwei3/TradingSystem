@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "trading/processor/processor.hpp"
+#include "trading/processor/processor.h"
 
 int main() {
   trading::OrderBookProcessor processor;

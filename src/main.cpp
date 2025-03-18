@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "trading/execution/engine.hpp"
-#include "trading/processor/processor.hpp"
+#include "trading/execution/engine.h"
+#include "trading/processor/processor.h"
 
 int main() {
   trading::OrderBookProcessor processor;

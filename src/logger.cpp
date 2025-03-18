@@ -1,6 +1,7 @@
-#include "trading/logger.hpp"
 #include <ctime>
 #include <iostream>
+
+#include "trading/logger.h"
 
 Logger &Logger::getInstance() {
   static Logger instance;

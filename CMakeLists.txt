@@ -5,9 +5,37 @@ project(
   VERSION 0.1.0
 )
 
+# cpp warnings
+if(MSVC)
+    add_compile_options("/Zc:__cplusplus")
+    add_compile_options("/Zc:preprocessor")
+    add_compile_options("/MP")
+else()
+    add_compile_options(-Wall -Wextra -Werror -Wno-unused-parameter -Wno-missing-field-initializers)
+
+    add_compile_options($<$<CONFIG:Debug>:-fsanitize=undefined>)
+    add_link_options($<$<CONFIG:Debug>:-fsanitize=undefined>)
+
+    # macos with gcc11 has bugs in asan:
+    # `member call on address 0x60b0000001a0 which does not point to an object of type '_Sp_counted_base'`
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        message(STATUS "Enable asan")
+
+        add_compile_options($<$<CONFIG:Debug>:-fsanitize=address>)
+        add_link_options($<$<CONFIG:Debug>:-fsanitize=address>)
+    endif()
+
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		add_compile_options(-Wno-restrict)
+		add_compile_options(-Wno-free-nonheap-object)
+		add_compile_options(-Wno-dangling-reference)
+	endif()
+endif()
+
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug")
 endif()
+
 message(STATUS "Started CMake for ${PROJECT_NAME} v${PROJECT_VERSION}...\n")
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -33,8 +61,13 @@ add_executable(main src/main.cpp)
 target_link_libraries(main PRIVATE Trading)
 
 # ------------------- Add tests -------------------
+if(ENABLE_TEST)
+  include(CTest)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
+
 # testing code
-enable_testing()
 
 add_executable(test_draft tests/draft.cpp)
 target_link_libraries(test_draft Trading)

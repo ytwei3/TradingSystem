@@ -1,5 +1,5 @@
-#ifndef TRADING_EXECUTION_QUERY_HPP
-#define TRADING_EXECUTION_QUERY_HPP
+#ifndef TRADING_EXECUTION_QUERY_H
+#define TRADING_EXECUTION_QUERY_H
 
 #include <set>
 #include <string>
@@ -18,4 +18,4 @@ struct Query {
 
 } // namespace trading
 
-#endif // TRADING_EXECUTION_QUERY_HPP
+#endif // TRADING_EXECUTION_QUERY_H
