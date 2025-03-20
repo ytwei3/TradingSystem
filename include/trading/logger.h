@@ -3,7 +3,6 @@
 
 #include <chrono>
 #include <mutex>
-#include <print>
 #include <string>
 
 enum class LogLevel { INFO, WARNING, ERROR };
@@ -32,8 +31,8 @@ public:
 class ConsoleLogger : public LoggerBase<ConsoleLogger> {
 public:
   void logImpl(LogLevel level, const std::string &message) {
-    std::print("[{}] [{}] {}\n", std::chrono::system_clock::now(),
-               getLogLevelString(level), message);
+    std::cout << "[" << std::chrono::system_clock::now() << "] "
+              << getLogLevelString(level) << " " << message << std::endl;
   }
 };
 

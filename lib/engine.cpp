@@ -69,8 +69,8 @@ std::string ExecutionEngine::queryOrderBookSnapshots(
         result += " X";
 
         for (std::size_t i = 0; i < ask_levels.size(); ++i) {
-          " " + std::to_string(snap.ask_price_levels[i].quantity) + "@" +
-              doubleToString(snap.ask_price_levels[i].price);
+          result += " " + std::to_string(snap.ask_price_levels[i].quantity) +
+                    "@" + doubleToString(snap.ask_price_levels[i].price);
         }
 
         if (output_last_trade_price) {
