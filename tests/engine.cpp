@@ -1,10 +1,12 @@
 #include <cassert>
 #include <iostream>
 
+#include "gtest/gtest.h"
+
 #include "trading/execution/engine.h"
 #include "trading/processor/processor.h"
 
-int main() {
+TEST(engine, reading_data) {
   trading::OrderBookProcessor processor;
   processor.ReadMarketData("../data/general_test_data.log");
 
@@ -18,6 +20,4 @@ int main() {
       processor, symbol, 1, 3, {3, 2, 1}, {1, 2, 3}, true, true);
 
   std::cout << result << std::endl;
-
-  return 0;
 }

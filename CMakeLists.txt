@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project("TradingSystem" VERSION 0.1.0)
+project("trading" VERSION 0.1.0)
 
 # cpp std
 set(CMAKE_CXX_STANDARD 23)
@@ -53,15 +53,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # ------------------- Add libraries -------------------
 message(STATUS "Adding libraries...")
+add_subdirectory(third_party)
 add_subdirectory(lib)
 add_subdirectory(src)
 
 # ------------------- Add tests -------------------
-# if(ENABLE_TEST)
-#   include(CTest)
-#   enable_testing()
-#   add_subdirectory(tests)
-# endif()
+enable_testing()
+add_subdirectory(tests)
 
 # testing code
 
